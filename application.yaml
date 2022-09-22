@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata: 
+  name: storedog
+  namespace: argocd
+spec: 
+  destination: 
+    namespace: storedog
+    server: "https://kubernetes.default.svc"
+  project: default
+  source: 
+    path: storedogproject
+    repoURL: "https://github.com/egeo2021/storedog.git"
+    targetRevision: main
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
